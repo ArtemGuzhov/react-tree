@@ -1,0 +1,11 @@
+li {
+  display: flex;
+  flex-direction: row;
+  justify-content: 'flex-start';
+  margin: 5px;
+}
+
+.name-node {
+  font-size: 25px;
+  font-family: Helvetica;
+}
