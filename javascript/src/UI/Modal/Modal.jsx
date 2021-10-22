@@ -12,16 +12,17 @@ const Modal = ({
   execute,
   name,
   rename,
+  type,
 }) => {
   const RootCreate = () => {
     const [value, setValue] = useState('')
 
     const createHandler = () => {
       if (value.length !== 0) {
-        if (rootId && !childId) {
+        if (type === 'root') {
           create(rootId, value)
-        } else if (rootId && childId) {
-          create(rootId, childId, value)
+        } else if (type === 'child') {
+          create(childId, value)
         } else {
           create(value)
         }

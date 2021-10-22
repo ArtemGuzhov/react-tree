@@ -16,12 +16,17 @@ const Branch = ({
   renameNodeHandler,
   level,
 }) => {
+  console.log('rerender', id)
+  // Массив потомков корневой записи
   const [children, setChildren] = useState(nodeChildren)
 
+  // Значение уровня потомков
   level += 1
 
+  // Id корневной записи
   const rootId = id
 
+  // Функция добавления узлов для потомков (children)
   const addNodeToChildren = (rootId, childId, value) => {
     setChildren([
       ...children.map((node) => {
@@ -51,6 +56,7 @@ const Branch = ({
     ])
   }
 
+  // Функция удаления узлов для потомков (children)
   const deleteNodeFromChildren = (rootId, childId) => {
     setChildren([
       ...children.map((node) => {
@@ -68,6 +74,7 @@ const Branch = ({
     ])
   }
 
+  // Функция измненения названия(name) узлов для потомков (children)
   const renameNodeFromChildren = (rootId, childId, value) => {
     setChildren([
       ...children.map((node) => {
@@ -94,6 +101,7 @@ const Branch = ({
     ])
   }
 
+  // Функция обновления состояния узлов для потомков (children)
   const updateChildren = (id, child) => {
     setChildren([
       ...children.map((node) => {
@@ -106,11 +114,15 @@ const Branch = ({
     ])
   }
 
+  // Если изменяется состояние потомков, то изменяем состояние предыдущих потомков
   useEffect(() => {
     updateChildrenState(rootId, children)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children])
 
+  /*
+  Если обновляются корневые записи, то изменяем состояние children на полученые новые значения props'а nodeChildren 
+  */
   useEffect(() => {
     if (statusUpdateRoot) {
       setChildren(nodeChildren)
@@ -118,6 +130,7 @@ const Branch = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusUpdateRoot])
 
+  // Если обновляются записи потомков, то изменяем состояние children на полученые новые значения props'а
   useEffect(() => {
     if (statusUpdateChildren) {
       setChildren(nodeChildren)

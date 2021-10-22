@@ -1,8 +1,12 @@
-li {
+.row {
   display: flex;
   flex-direction: row;
   justify-content: 'flex-start';
   margin: 5px;
+}
+
+li {
+  list-style: none;
 }
 
 .name-node {
